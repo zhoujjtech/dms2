@@ -1,4 +1,4 @@
-package com.example.dms2.infrastructure.repository.mapper;
+package com.example.dms2.infrastructure.mapper;
 
 import com.example.dms2.domain.model.entity.User;
 import java.util.List;

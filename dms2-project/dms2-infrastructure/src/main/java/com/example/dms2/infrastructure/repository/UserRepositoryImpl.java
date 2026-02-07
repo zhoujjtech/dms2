@@ -2,7 +2,7 @@ package com.example.dms2.infrastructure.repository;
 
 import com.example.dms2.domain.model.entity.User;
 import com.example.dms2.domain.repository.UserRepository;
-import com.example.dms2.infrastructure.repository.mapper.UserMapper;
+import com.example.dms2.infrastructure.mapper.UserMapper;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

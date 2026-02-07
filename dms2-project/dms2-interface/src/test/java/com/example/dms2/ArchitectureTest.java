@@ -141,6 +141,8 @@ class ArchitectureTest {
         classes()
             .that()
             .resideInAPackage("..infrastructure.repository..")
+            .and()
+            .areNotAssignableTo(org.apache.ibatis.annotations.Mapper.class)
             .should()
             .haveSimpleNameEndingWith("RepositoryImpl");
 
@@ -203,6 +205,8 @@ class ArchitectureTest {
         classes()
             .that()
             .resideInAPackage("..infrastructure.repository..")
+            .and()
+            .areNotAssignableTo(org.apache.ibatis.annotations.Mapper.class)
             .should()
             .dependOnClassesThat()
             .resideInAPackage("..domain.repository..");
@@ -281,6 +285,32 @@ class ArchitectureTest {
             .haveSimpleNameEndingWith("Fallback")
             .orShould()
             .haveSimpleNameEndingWith("Service");
+
+    rule.check(classes);
+  }
+
+  @Test
+  @DisplayName("MyBatis Mapper应该命名在mapper包下")
+  void mybatisMappersShouldResideInMapperPackage() {
+    ArchRule rule =
+        classes()
+            .that()
+            .areAnnotatedWith(org.apache.ibatis.annotations.Mapper.class)
+            .should()
+            .resideInAPackage("..infrastructure.mapper..");
+
+    rule.check(classes);
+  }
+
+  @Test
+  @DisplayName("MyBatis Mapper应该以Mapper结尾")
+  void mybatisMappersShouldHaveProperNaming() {
+    ArchRule rule =
+        classes()
+            .that()
+            .resideInAPackage("..infrastructure.mapper..")
+            .should()
+            .haveSimpleNameEndingWith("Mapper");
 
     rule.check(classes);
   }
