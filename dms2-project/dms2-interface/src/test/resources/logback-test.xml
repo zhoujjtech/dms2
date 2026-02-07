@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- 定义日志格式 -->
+  <property name="CONSOLE_LOG_PATTERN"
+            value="%d{HH:mm:ss.SSS} %5p [%t] %-40.40logger{39} : %m%n"/>
+
+  <!-- 控制台输出 -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!--
+    测试环境日志级别配置
+  -->
+  <logger name="org.springframework" level="WARN"/>
+  <logger name="org.springframework.boot" level="WARN"/>
+  <logger name="org.springframework.web" level="WARN"/>
+  <logger name="org.springframework.test" level="INFO"/>
+
+  <!-- MyBatis 测试日志 -->
+  <logger name="com.example.dms2.infrastructure.repository.mapper" level="DEBUG"/>
+
+  <!-- 应用测试日志 -->
+  <logger name="com.example.dms2" level="DEBUG"/>
+
+  <!-- 根日志级别 -->
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+
+</configuration>
