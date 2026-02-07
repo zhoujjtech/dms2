@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dms2-service-test
+
+  cloud:
+    nacos:
+      discovery:
+        enabled: false  # 测试环境禁用Nacos
+
+  # 测试使用内存数据库，不连接真实数据库
+  # 如果未来引入了数据库，使用H2内存数据库
+
+# 日志配置
+logging:
+  level:
+    root: WARN
+    com.example.dms2: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Feign配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 30000
+  circuitbreaker:
+    enabled: false  # 测试环境禁用熔断
+
+# Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
